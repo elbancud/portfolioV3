@@ -1,0 +1,437 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  background-color: #f8f8f8;
+  font: 500 1.1rem/1.6 "montserat", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font: 500 1.1rem/1.6 "montserat", sans-serif;
+  opacity: 0.7;
+  margin: 2rem 0;
+}
+
+a {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+li {
+  list-style-type: none;
+  letter-spacing: 0.06rem;
+  font-size: 14px;
+}
+
+p {
+  color: #302f2f;
+}
+
+.logo-container img {
+  width: 50px;
+  height: 60px;
+}
+
+.container {
+  width: 100%;
+  max-width: 2500px;
+  margin: 0 auto;
+}
+
+nav {
+  padding: 1rem 0;
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+nav a {
+  font-size: 14px;
+  color: black;
+  position: relative;
+}
+
+nav ul {
+  margin: 0 1rem;
+}
+
+nav a::after {
+  content: "";
+  width: 100%;
+  height: 0.2rem;
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transform-origin: left;
+          transform-origin: left;
+  background-color: #1d1d1d;
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+
+nav a:hover::after {
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+  -webkit-transform-origin: right;
+          transform-origin: right;
+}
+
+li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.links {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+
+@media (max-width: 950px) {
+  width: 100%;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  .links {
+    display: none;
+  }
+}
+
+main {
+  width: 100%;
+  margin: 0 auto;
+}
+
+main .projectGallery {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(450px, 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  grid-auto-rows: minmax(410px, auto);
+}
+
+main .projectGallery .box {
+  width: 100%;
+  cursor: pointer;
+  overflow: hidden;
+  -webkit-transition: 0.5 s ease-in-out infinite;
+  transition: 0.5 s ease-in-out infinite;
+  position: relative;
+  background-color: #3a4474;
+}
+
+@media (max-width: 950px) {
+  main .projectGallery .box {
+    grid-row: span 1;
+  }
+  main .projectGallery .box img {
+    width: 36%;
+  }
+}
+
+main .projectGallery .box .calenderHover {
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+}
+
+main .projectGallery .box .calenderHover img {
+  width: 90%;
+}
+
+main .projectGallery .box .overlay {
+  background-color: inherit;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+main .projectGallery .box:hover .overlay {
+  -webkit-filter: brightness(30%);
+          filter: brightness(30%);
+  -webkit-transition: 0.4s ease-in-out;
+  transition: 0.4s ease-in-out;
+}
+
+main .projectGallery .box:hover .content {
+  -webkit-filter: brightness(30%);
+          filter: brightness(30%);
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+main .projectGallery .box .shorten {
+  width: 70%;
+}
+
+main .projectGallery .box .content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  color: black;
+  opacity: 1;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-transform: uppercase;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: hidden;
+}
+
+main .projectGallery .box .content img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+main .projectGallery .box .content .topCorner {
+  top: 150px;
+}
+
+main .projectGallery .large {
+  background-color: #fee600;
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+@media (max-width: 950px) {
+  main .projectGallery .large {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}
+
+main .projectGallery .large::before {
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  content: "Early Projects";
+  position: absolute;
+  top: 5%;
+  left: 0;
+  z-index: 1;
+  padding: 1rem;
+  color: white;
+  background-color: black;
+}
+
+main .projectGallery .medium {
+  background-color: #2082c9;
+  grid-column: span 1;
+  grid-row: span 2;
+}
+
+@media (max-width: 950px) {
+  main .projectGallery .medium {
+    grid-row: span 1;
+  }
+}
+
+main .projectGallery .black {
+  background-color: black;
+}
+
+main .projectGallery .black img {
+  width: 20%;
+}
+
+main .projectGallery .white {
+  background-color: #f8f8f8;
+}
+
+.aboutMeSection {
+  padding: 6rem 0;
+  margin: 0 auto;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-flow: wrap;
+      flex-flow: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.aboutMeSection .btn {
+  -webkit-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  padding: 1rem;
+  margin: 0.5rem;
+  font-family: inherit;
+}
+
+.aboutMeSection .intro {
+  font: 1000 3em/1.1 "montserat", sans-serif;
+}
+
+.aboutMeSection p {
+  text-transform: initial;
+  max-width: 39rem;
+  line-height: 1.3;
+}
+
+.aboutMeSection .aboutMe {
+  padding: 5rem 2rem;
+  position: relative;
+}
+
+.aboutMeSection .graphicAnimation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.aboutMeSection .graphicAnimation img {
+  width: 100%;
+  min-width: 500px;
+}
+
+section .container {
+  width: 100%;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+section .container .programmingLangContainer {
+  display: -ms-grid;
+  display: grid;
+  width: 95%;
+  margin: 0 auto;
+  -ms-grid-columns: (minmax(140px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  padding: 3rem 0;
+  gap: 0.5rem;
+}
+
+section .container .programmingLangContainer img {
+  width: 45%;
+  max-width: 100px;
+}
+
+section .container .programmingLangContainer .content {
+  display: -ms-grid;
+  display: grid;
+  width: 100%;
+  place-items: center;
+}
+
+section .container .programmingLangContainer .content .progressBar {
+  margin: 2rem 0;
+  width: 70%;
+  height: 2rem;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+section .container .programmingLangContainer .content .progressBar .progressHtml {
+  width: 95%;
+  background-color: orangered;
+  height: 100%;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+section .container .programmingLangContainer .content .progressBar .progressCss {
+  width: 90%;
+  background-color: blue;
+  height: 100%;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+footer {
+  width: 100%;
+  padding: 7rem 5rem;
+  background-color: black;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row;
+          flex-flow: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+footer li {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+}
+
+footer li ul {
+  margin: 0.3rem 0;
+}
+
+footer li ul:nth-child(1) {
+  opacity: 0.3;
+}
+
+@media (max-width: 950px) {
+  footer {
+    text-align: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: column;
+            flex-flow: column;
+  }
+}
+/*# sourceMappingURL=style.css.map */
