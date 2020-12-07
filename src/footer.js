@@ -3,26 +3,24 @@ import './style.css';
 function footer() {
     return (
         <div>
-            <footer>
-  
+            <footer >
+  <div className="wrapper footer-content">
   <div className="socialMedia">
     <li>
-      <ul>Social Medias</ul>
-      <ul>Emarson Bancud</ul>
-      <ul>Emarson Bancud</ul>
-      <ul>Emarson Bancud</ul>
-      <ul>Emarson Bancud</ul>
+      <ul>Follow me</ul>
+      <ul>Facebook/ Emarson Bancud</ul>
+      <ul>Instagram/ Emarson Bancud</ul>
+      <ul>Pinterest/ Emarson Bancud</ul>
      
     </li>
   </div>
   <div className="socialMedia">
     <li>
-      <ul>Emarson Bancud</ul>
-      <ul>Emarson Bancud</ul>
-      <ul>Emarson Bancud</ul>
-      <ul>Emarson Bancud</ul>
-      <ul>Emarson Bancud</ul>
-      <ul>Emarson Bancud</ul>
+      <ul>Contact me</ul>
+      <ul>09293953021</ul>
+      <ul>elbancud@gmail.com</ul>
+      <ul>Fairview, Q.C</ul>
+      
     </li>
   </div>
   <div className="socialMedia">
@@ -35,7 +33,7 @@ function footer() {
       <ul>Emarson Bancud</ul>
     </li>
   </div>
-
+    </div>
 </footer> 
         </div>
     )

@@ -3,14 +3,29 @@
   padding: 0px;
   box-sizing: border-box;
 }
+
 $tabletSize: 950px;
-$boxShadow: 0 2px 1px rgba(0, 0, 0, 0.16), 0 1px 4px rgba(0, 0, 0, 0.23);
+$mobileSize: 400px;
+$smallMobileSize: 300px;
+$boxShadow: 0 50px 100px -20px rgba(50, 50, 93, 0.25),
+  0 30px 60px -30px rgba(0, 0, 0, 0.3),
+  inset 0 -2px 6px 0 rgba(10, 37, 64, 0.35);
+
 @mixin mediaQuery {
   @media (max-width: #{$tabletSize}) {
     @content;
   }
 }
-
+@mixin mediaQueryMobile {
+  @media (max-width: #{mobileSize}) {
+    @content;
+  }
+}
+@mixin mediaQueryMobileSmall {
+  @media (max-width: #{smallMobileSize}) {
+    @content;
+  }
+}
 @mixin display-flex-justify-center {
   display: flex;
   flex-flow: row;
@@ -18,10 +33,11 @@ $boxShadow: 0 2px 1px rgba(0, 0, 0, 0.16), 0 1px 4px rgba(0, 0, 0, 0.23);
 
 body {
   font-weight: bold;
-  text-transform: uppercase;
+
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  background-color: #f8f8f8;
+  // background-color: #e8e9ee;
+  background-color: #fff;
   font: 500 1.1rem/1.6 "montserat", sans-serif;
 }
 
@@ -36,23 +52,27 @@ h4 {
 
 a {
   text-decoration: none;
-  font-weight: bold;
-  font-size: 14px;
 }
 li {
   list-style-type: none;
-  letter-spacing: 0.06rem;
-  font-size: 14px;
+  font: 800 2rem "montserat", sans-serif;
 }
 p {
-  color: rgb(48, 47, 47);
+  color: #425466;
 }
 
 .logo-container {
+  display: flex;
+  align-items: center;
   img {
-    width: 50px;
-    height: 60px;
+    width: 30px;
+    object-fit: contain;
   }
+}
+.wrapper {
+  max-width: 75%;
+  margin: 0 auto;
+  width: 90%;
 }
 .container {
   width: 100%;
@@ -60,12 +80,115 @@ p {
   margin: 0 auto;
 }
 nav {
-  padding: 1rem 0;
-  width: 90%;
-  margin: 0 auto;
-  position: relative;
+  width: 100%;
+  overflow: hidden;
   display: flex;
-  justify-content: space-between;
+
+  .mobileNavigation {
+    padding: 1.5rem;
+    transition: 0.2s ease-in;
+    position: absolute;
+    width: 92%;
+    top: 1rem;
+    left: 50%;
+    box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25),
+      0 18px 36px -18px rgba(0, 0, 0, 0.3);
+    transform: translateX(-50%);
+    border-radius: 0.5rem;
+    z-index: 2;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    display: none;
+    @include mediaQuery() {
+      display: none;
+    }
+    .closeIcon {
+      float: right;
+
+      img {
+        float: right;
+        width: 12px;
+      }
+    }
+    .mobileNavigationLinks {
+      li {
+        display: flex;
+        flex-direction: column;
+      }
+      ul {
+        justify-content: center;
+        display: flex;
+        padding: 1rem 0;
+        img {
+          margin: 0 1rem;
+        }
+      }
+    }
+  }
+  .hidden {
+    opacity: 0;
+    transition: opacity 0.2s ease-in;
+    @include mediaQuery {
+      display: none;
+    }
+  }
+  .active {
+    display: block;
+    transition: opacity 0.2s ease-in;
+    opacity: 1;
+  }
+  .bars {
+    position: relative;
+    display: none;
+    .icon {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+    @include mediaQuery {
+      display: block;
+    }
+  }
+  .navAnimateOut {
+    margin: 0 2rem;
+
+    transition: transform ease-in-out 0.6s;
+  }
+
+  ul {
+    position: relative;
+  }
+  ul:hover .navAnimateOut {
+    cursor: pointer;
+    transform: translateY(-110px);
+  }
+  ul:hover .navAnimateIn {
+    cursor: pointer;
+    transform: translate(-50%, 0px);
+  }
+  .navAnimateIn {
+    transition: transform ease-in-out 0.4s;
+    position: absolute;
+    top: 0;
+    left: 50%;
+
+    transform: translate(-50%, 25px);
+  }
+  img {
+    width: 24px;
+    object-fit: contain;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .nav-list {
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    padding: 1rem 0;
+    justify-content: space-between;
+  }
   a {
     font-size: 14px;
     color: black;
@@ -96,9 +219,15 @@ li {
   display: flex;
 }
 .links {
+  align-self: center;
   align-items: center;
   display: flex;
   transition: 0.3s ease-in-out;
+  overflow: hidden;
+  height: max-content;
+  @include mediaQuery {
+    display: none;
+  }
 }
 @include mediaQuery {
   width: 100%;
@@ -115,13 +244,21 @@ main {
 
   .projectGallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
-    grid-auto-rows: minmax(410px, auto);
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-auto-rows: minmax(400px, auto);
+    grid-gap: 0.3rem;
+    padding: 0.3rem;
+    @include mediaQuery() {
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
 
     .box {
       width: 100%;
-      cursor: pointer;
+      background-color: #fff;
+      box-shadow: $boxShadow;
 
+      cursor: pointer;
+      border-radius: 0.7rem;
       overflow: hidden;
       transition: 0.5 s ease-in-out infinite;
       position: relative;
@@ -151,9 +288,36 @@ main {
         height: 100%;
         position: relative;
       }
+      .bottom-content {
+        position: absolute;
+        z-index: 1;
+        bottom: 0rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+
+        color: white;
+        font-weight: 400;
+        padding: 1rem;
+        letter-spacing: 1px;
+        font-size: 14px;
+        display: flex;
+        div {
+          margin-right: 0.5rem;
+          display: flex;
+          align-items: center;
+        }
+        img {
+          width: 26px;
+          object-fit: contain;
+        }
+      }
       &:hover .overlay {
         filter: brightness(30%);
         transition: 0.4s ease-in-out;
+      }
+      &:hover .bottom-content {
+        color: white;
       }
       &:hover .content {
         filter: brightness(30%);
@@ -188,7 +352,6 @@ main {
 
     .large {
       background-color: #fee600;
-
       grid-column: span 2;
       grid-row: span 2;
 
@@ -218,7 +381,9 @@ main {
         grid-row: span 1;
       }
     }
-
+    .red {
+      background-color: #df535e;
+    }
     .black {
       background-color: black;
       img {
@@ -231,40 +396,55 @@ main {
   }
 }
 .aboutMeSection {
-  padding: 6rem 0;
   margin: 0 auto;
   position: relative;
   display: flex;
   flex-flow: wrap;
+  overflow: hidden;
   justify-content: center;
-  align-items: center;
+  padding: 9rem 0rem;
   .btn {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
     padding: 1rem;
     margin: 0.5rem;
     font-family: inherit;
   }
-
+  .content-left {
+    max-width: 540px;
+    width: 100%;
+  }
   .intro {
-    font: 1000 3em/1.1 "montserat", sans-serif;
+    font: 800 5em/1 "montserat", sans-serif;
+    &::selection {
+      background-color: transparent;
+    }
+    @include mediaQuery {
+      font: 800 3rem/1 "montserat", sans-serif;
+    }
   }
 
-  p {
+  .paragraph {
     text-transform: initial;
-    max-width: 39rem;
     line-height: 1.3;
   }
-  .aboutMe {
-    padding: 5rem 2rem;
 
-    position: relative;
-  }
   .graphicAnimation {
     display: flex;
+    max-width: 540px;
+
     justify-content: center;
+    position: relative;
     img {
-      width: 85%;
-      min-width: 500px;
+      float: right;
+      width: 90%;
+      object-fit: contain;
+    }
+    .polygon {
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      background-color: green;
+      width: 45px;
+      height: 48px;
+      position: absolute;
     }
   }
   // &::before {
@@ -281,7 +461,8 @@ main {
 }
 section {
   .container {
-    width: 100%;
+    width: 80%;
+    max-width: 1080px;
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -291,6 +472,7 @@ section {
       margin: 0 auto;
       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       padding: 3rem 0;
+
       gap: 0.5rem;
       img {
         width: 45%;
@@ -329,23 +511,35 @@ section {
 }
 footer {
   width: 100%;
-  padding: 7rem 5rem;
+  margin: 0 auto;
   background-color: black;
   color: white;
 
-  @include display-flex-justify-center;
-  justify-content: space-evenly;
-  li {
-    flex-flow: column;
-    ul {
-      margin: 0.3rem 0;
-      &:nth-child(1) {
-        opacity: 0.3;
+  .footer-content {
+    max-width: 800px;
+    padding: 7rem 0;
+    @include display-flex-justify-center;
+    justify-content: space-between;
+
+    li {
+      font: 400 1rem "montserat", sans-serif;
+
+      flex-flow: column;
+      ul {
+        margin: 0.3rem 0;
+
+        opacity: 0.4;
+        &:nth-child(1) {
+          opacity: 1;
+        }
       }
     }
-  }
-  @include mediaQuery {
-    text-align: center;
-    flex-flow: column;
+    @include mediaQuery {
+      text-align: center;
+      flex-flow: column;
+    }
+    .socialMedia {
+      margin: 2rem 0;
+    }
   }
 }
